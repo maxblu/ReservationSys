@@ -1,0 +1,12 @@
+/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/bin/Debug/net5.0/ReservationSys.Domain.deps.json
+/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/bin/Debug/net5.0/ReservationSys.Domain.dll
+/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/bin/Debug/net5.0/ref/ReservationSys.Domain.dll
+/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/bin/Debug/net5.0/ReservationSys.Domain.pdb
+/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/obj/Debug/net5.0/ReservationSys.Domain.csprojAssemblyReference.cache
+/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/obj/Debug/net5.0/ReservationSys.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/obj/Debug/net5.0/ReservationSys.Domain.AssemblyInfoInputs.cache
+/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/obj/Debug/net5.0/ReservationSys.Domain.AssemblyInfo.cs
+/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/obj/Debug/net5.0/ReservationSys.Domain.csproj.CoreCompileInputs.cache
+/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/obj/Debug/net5.0/ReservationSys.Domain.dll
+/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/obj/Debug/net5.0/ref/ReservationSys.Domain.dll
+/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/obj/Debug/net5.0/ReservationSys.Domain.pdb
