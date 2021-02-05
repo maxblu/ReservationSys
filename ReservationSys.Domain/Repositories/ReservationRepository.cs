@@ -3,6 +3,7 @@
 
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ReservationSys.Domain.Concrete;
 using ReservationSys.Domain.Entities;
@@ -18,26 +19,15 @@ namespace ReservationSys.Domain.Repositories
             _table = _context.Set<Contact>();
         }
 
-        public override IEnumerable<Contact> GetAll()
+        public override async Task<IEnumerable<Contact>> GetAll()
         {
-            return _table.Include("Contact");
+            return await _table.Include("Contact").ToListAsync();
         }
 
-        public override Contact GetById(int id)
+        public override async Task<Contact> GetById(int id)
         {
-            return _table.Include("Contact").FirstOrDefaultAsync(x => x.Id == id).Result;
+            return await _table.Include("Contact").FirstOrDefaultAsync(x => x.Id == id);
         }
-
-
-
-
-
-
-
-
-
-
-
 
     }
 

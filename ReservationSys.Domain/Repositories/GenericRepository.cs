@@ -5,11 +5,12 @@ using Microsoft.EntityFrameworkCore;
 using ReservationSys.Domain.Concrete;
 using System.Linq.Expressions;
 using System;
+using System.Threading.Tasks;
 
 namespace ReservationSys.Domain.Repositories
 {
 
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         protected readonly EFDbContext _context;
 
@@ -19,40 +20,46 @@ namespace ReservationSys.Domain.Repositories
 
         }
 
-        public void Add(T entity)
+        public async Task<TEntity> Add(TEntity entity)
         {
-            _context.Set<T>().Add(entity);
+            await _context.Set<TEntity>().AddAsync(entity);
+
+            return entity;
         }
 
-        public void AddRange(IEnumerable<T> entities)
+        public async Task<IEnumerable<TEntity>> AddRange(IEnumerable<TEntity> entities)
         {
-            _context.Set<T>().AddRange(entities);
+            await _context.Set<TEntity>().AddRangeAsync(entities);
+
+            return entities;
         }
 
-        public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
+        public async Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> expression)
         {
-            return _context.Set<T>().Where(expression);
+            return await _context.Set<TEntity>().AsQueryable().Where(expression).ToListAsync();
         }
 
-        public virtual IEnumerable<T> GetAll()
+        public virtual async Task<IEnumerable<TEntity>> GetAll()
         {
-            return _context.Set<T>().ToList();
+            return await _context.Set<TEntity>().ToListAsync();
         }
 
-        public virtual T GetById(int id)
+        public virtual async Task<TEntity> GetById(int id)
         {
-            return _context.Set<T>().Find(id);
+
+            return await _context.Set<TEntity>().FindAsync(id);
         }
 
-        public void Remove(T entity)
+        public void Remove(TEntity entity)
         {
-            _context.Set<T>().Remove(entity);
+            _context.Set<TEntity>().Remove(entity);
         }
 
-        public void RemoveRange(IEnumerable<T> entities)
+        public void RemoveRange(IEnumerable<TEntity> entities)
         {
-            _context.Set<T>().RemoveRange(entities);
+            _context.Set<TEntity>().RemoveRange(entities);
         }
+
     }
 
 }

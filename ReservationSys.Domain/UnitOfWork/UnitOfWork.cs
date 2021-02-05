@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ReservationSys.Domain.Concrete;
 using ReservationSys.Domain.Repositories;
@@ -20,13 +21,13 @@ namespace ReservationSys.Domain.UnitOfWork
 
         public EFDbContext ctx => _context;
 
-        public int Complete()
+        public async Task<int> Complete()
         {
-            return _context.SaveChanges();
+            return await _context.SaveChangesAsync();
         }
-        public void Dispose()
+        public async void Dispose()
         {
-            _context.Dispose();
+            await _context.DisposeAsync();
         }
     }
 }

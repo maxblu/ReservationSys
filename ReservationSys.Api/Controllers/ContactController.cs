@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ReservationSys.Domain.Entities;
 
@@ -13,10 +14,10 @@ public class ContactController : ControllerBase
         _unitOfWork = unitOfWork;
     }
 
-    public IActionResult GetContacts()
+    public async Task<ActionResult<IEnumerable<Contact>>> GetContacts()
     {
 
-        return Ok(_unitOfWork.ContactRepo.GetAll());
+        return Ok(await _unitOfWork.ContactRepo.GetAll());
 
     }
 
