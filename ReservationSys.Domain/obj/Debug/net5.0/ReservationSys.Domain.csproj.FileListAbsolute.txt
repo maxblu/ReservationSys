@@ -10,3 +10,6 @@
 /home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/obj/Debug/net5.0/ReservationSys.Domain.dll
 /home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/obj/Debug/net5.0/ref/ReservationSys.Domain.dll
 /home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/obj/Debug/net5.0/ReservationSys.Domain.pdb
+/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/bin/Debug/net5.0/ReservationSys.Domain.runtimeconfig.json
+/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/bin/Debug/net5.0/ReservationSys.Domain.runtimeconfig.dev.json
+/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Domain/obj/Debug/net5.0/ReservationSys.Domain.genruntimeconfig.cache
