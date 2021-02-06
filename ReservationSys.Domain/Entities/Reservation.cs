@@ -32,6 +32,7 @@ namespace ReservationSys.Domain.Entities
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
+        public DateTime CreationDate { get; set; }
     }
 
 }

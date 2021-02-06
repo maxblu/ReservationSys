@@ -35,8 +35,9 @@ namespace ReservationSys.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-
+            services.AddCors();
             services.AddControllers();
+
 
             #region Repositories
 
@@ -68,6 +69,9 @@ namespace ReservationSys.Api
         {
             if (env.IsDevelopment())
             {
+                app.UseCors(
+                    options => options.WithOrigins("http://localhost:3000").AllowAnyMethod()
+                );
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ReservationSys.Api v1"));

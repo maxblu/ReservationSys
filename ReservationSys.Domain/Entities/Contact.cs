@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace ReservationSys.Domain.Entities
 {
     public class Contact
@@ -26,9 +27,8 @@ namespace ReservationSys.Domain.Entities
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
 
-        // [DataType(DataType.MultilineText)]
-        // [AllowHtml]
-        public string Description { get; set; }
+        [Required(ErrorMessage = "Must enter id number")]
+        public long IdNumber { get; set; }
 
     }
 

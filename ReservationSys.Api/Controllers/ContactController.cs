@@ -1,100 +1,131 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ReservationSys.Domain.Concrete;
 using ReservationSys.Domain.Entities;
 
-[Route("api/[controller]")]
-[ApiController]
-public class ContactController : ControllerBase
+namespace ReservationSys.Api.Controllers
 {
-    private readonly IUnitOfWork _unitOfWork;
-    public ContactController(IUnitOfWork unitOfWork)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ContactController : ControllerBase
     {
-        _unitOfWork = unitOfWork;
-    }
+        private readonly IUnitOfWork _unitOfWork;
 
-    public async Task<ActionResult<IEnumerable<Contact>>> GetContacts()
-    {
+        public ContactController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
 
-        return Ok(await _unitOfWork.ContactRepo.GetAll());
+        // GET: api/Contact
+        [HttpGet("")]
+        public async Task<ActionResult<IEnumerable<Contact>>> Get()
+        {
+            var contacs = await _unitOfWork.ContactRepo.GetAll();
 
-    }
+            if (contacs == null)
+            {
+                return NotFound();
+            }
 
 
-    [HttpPost]
-    public IActionResult AddContact()
-    {
+            return Ok(contacs);
 
-        var types = new List<ContactType>
+        }
+
+        // GET: api/Contact/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Contact>> GetContact(int id)
+        {
+            var contact = await _unitOfWork.ContactRepo.GetById(id);
+
+            if (contact == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(contact);
+        }
+
+        // // PUT: api/Contact/5
+        // // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutContact(int id, Contact contact)
+        {
+            if (id != contact.Id)
+            {
+                return BadRequest();
+            }
+
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.ContactRepo.Update(contact);
+
+                try
                 {
-                    new ContactType{
-                    Name = "Unknown"
-                    },
-                    new ContactType{
-                    Name = "Important"
-                    },
-                    new ContactType{
-                    Name = "Work"
-                    },
-                    new ContactType{
-                    Name = "Family"
+                    await _unitOfWork.Complete();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (await _unitOfWork.ContactRepo.GetById(id) == null)
+                    {
+                        return NotFound();
                     }
-                };
+                    else
+                    {
+                        throw;
+                    }
+                }
 
-        types.ForEach(t => _unitOfWork.ctx.ContactTypes.Add(t));
 
-        _unitOfWork.Complete();
+                return NoContent();
 
-        var contacts = new List<Contact>
-                {
-                    new Contact{
-                        Name = "Batman",
-                        BirthDate = new DateTime(1939, 5, 1),
-                        TypeId = 2,
-                        Description = "Bruce Wayne",
-                        Phone = "01010101"
-                    },
-                    new Contact{
-                        Name = "Superman",
-                        BirthDate = new DateTime(1938, 2, 19),
-                        TypeId = 3,
-                        Description = "Clark Kent",
-                        Phone = "81281281"
-                    },
-                    new Contact{
-                        Name = "Wolverine",
-                        BirthDate = new DateTime(1974, 10, 12),
-                        TypeId = 3,
-                        Description = "Logan (James Howlett)",
-                        Phone = "35467891"
-                    },
-                    new Contact{
-                        Name = "Spider-Man",
-                        BirthDate = new DateTime(1962, 8, 8),
-                        TypeId = 4,
-                        Description = "Peter Parker",
-                        Phone = "88888888"
-                    },
-                    new Contact{
-                        Name = "Flash",
-                        BirthDate = new DateTime(1959, 12, 28),
-                        TypeId = 1,
-                        Description = "Barry Allen",
-                        Phone = "00000000"
-                    },
-                    new Contact{
-                        Name = "Wonder Woman",
-                        BirthDate = new DateTime(1941, 3, 22),
-                        TypeId = 2,
-                        Description = "Diana Prince",
-                        Phone = "74289567"
-                    },
-                };
+            }
+            return ValidationProblem(ModelState);
+        }
 
-        contacts.ForEach(t => _unitOfWork.ctx.Contacts.Add(t));
-        _unitOfWork.Complete();
+        // POST: api/Contact
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<Contact>> PostContact(Contact contact)
+        {
+            if (ModelState.IsValid)
+            {
 
-        return Ok();
+                await _unitOfWork.ContactRepo.Add(contact);
+
+
+                await _unitOfWork.Complete();
+
+                return CreatedAtAction("GetContact", new { id = contact.Id }, contact);
+
+
+            }
+
+
+            return ValidationProblem(ModelState);
+        }
+
+        // DELETE: api/Contact/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteContact(int id)
+        {
+            var contact = await _unitOfWork.ContactRepo.GetById(id);
+            if (contact == null)
+            {
+                return NotFound();
+            }
+
+            _unitOfWork.ContactRepo.Remove(contact);
+            await _unitOfWork.Complete();
+
+            return NoContent();
+        }
+
+
     }
 }

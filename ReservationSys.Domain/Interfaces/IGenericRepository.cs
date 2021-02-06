@@ -17,5 +17,7 @@ namespace ReservationSys.Domain.Interfaces
         Task<IEnumerable<TEntity>> AddRange(IEnumerable<TEntity> entities);
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
+
+        void Update(TEntity obj);
     }
 }

@@ -15601,6 +15601,72 @@
     "CSharpLanguageVersion": 900
   },
   "RootNamespace": "ReservationSys.Api",
-  "Documents": [],
+  "Documents": [
+    {
+      "FilePath": "/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/Templates/ControllerGenerator/ApiEmptyController.cshtml",
+      "TargetPath": "Templates\\ControllerGenerator\\ApiEmptyController.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/Templates/ControllerGenerator/MvcControllerWithContext.cshtml",
+      "TargetPath": "Templates\\ControllerGenerator\\MvcControllerWithContext.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/Templates/ControllerGenerator/EmptyController.cshtml",
+      "TargetPath": "Templates\\ControllerGenerator\\EmptyController.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/Templates/ControllerGenerator/ApiControllerWithContext.cshtml",
+      "TargetPath": "Templates\\ControllerGenerator\\ApiControllerWithContext.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/Templates/ViewGenerator/Edit.cshtml",
+      "TargetPath": "Templates\\ViewGenerator\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/Templates/ViewGenerator/Empty.cshtml",
+      "TargetPath": "Templates\\ViewGenerator\\Empty.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/Templates/ControllerGenerator/ControllerWithActions.cshtml",
+      "TargetPath": "Templates\\ControllerGenerator\\ControllerWithActions.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/Templates/ControllerGenerator/ApiControllerWithActions.cshtml",
+      "TargetPath": "Templates\\ControllerGenerator\\ApiControllerWithActions.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/Templates/ViewGenerator/_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Templates\\ViewGenerator\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/Templates/ViewGenerator/List.cshtml",
+      "TargetPath": "Templates\\ViewGenerator\\List.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/Templates/ViewGenerator/Delete.cshtml",
+      "TargetPath": "Templates\\ViewGenerator\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/Templates/ViewGenerator/Create.cshtml",
+      "TargetPath": "Templates\\ViewGenerator\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/Templates/ViewGenerator/Details.cshtml",
+      "TargetPath": "Templates\\ViewGenerator\\Details.cshtml",
+      "FileKind": "mvc"
+    }
+  ],
   "SerializationFormat": "0.2"
 }

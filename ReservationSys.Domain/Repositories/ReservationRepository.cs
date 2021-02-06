@@ -11,20 +11,20 @@ using ReservationSys.Domain.Entities;
 namespace ReservationSys.Domain.Repositories
 {
 
-    public class ReservationRepository : GenericRepository<Contact>
+    public class ReservationRepository : GenericRepository<Reservation>
     {
-        protected readonly DbSet<Contact> _table;
+
         public ReservationRepository(EFDbContext context) : base(context)
         {
-            _table = _context.Set<Contact>();
+
         }
 
-        public override async Task<IEnumerable<Contact>> GetAll()
+        public override async Task<IEnumerable<Reservation>> GetAll()
         {
             return await _table.Include("Contact").ToListAsync();
         }
 
-        public override async Task<Contact> GetById(int id)
+        public override async Task<Reservation> GetById(int id)
         {
             return await _table.Include("Contact").FirstOrDefaultAsync(x => x.Id == id);
         }

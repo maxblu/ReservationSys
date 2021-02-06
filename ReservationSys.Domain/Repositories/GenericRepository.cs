@@ -13,16 +13,18 @@ namespace ReservationSys.Domain.Repositories
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         protected readonly EFDbContext _context;
+        protected readonly DbSet<TEntity> _table;
 
         public GenericRepository(EFDbContext context)
         {
             _context = context;
+            _table = _context.Set<TEntity>();
 
         }
 
         public async Task<TEntity> Add(TEntity entity)
         {
-            await _context.Set<TEntity>().AddAsync(entity);
+            await _table.AddAsync(entity);
 
             return entity;
         }
@@ -60,6 +62,12 @@ namespace ReservationSys.Domain.Repositories
             _context.Set<TEntity>().RemoveRange(entities);
         }
 
+        public void Update(TEntity obj)
+        {
+            _table.Attach(obj);
+            _context.Entry(obj).State = EntityState.Modified;
+
+        }
     }
 
 }

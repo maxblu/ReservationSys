@@ -9,8 +9,8 @@ using ReservationSys.Domain.Concrete;
 namespace ReservationSys.Api.Migrations
 {
     [DbContext(typeof(EFDbContext))]
-    [Migration("20210205042743_Initial")]
-    partial class Initial
+    [Migration("20210206071151_IdNumberContact")]
+    partial class IdNumberContact
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,8 +27,8 @@ namespace ReservationSys.Api.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("IdNumber")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -70,6 +70,9 @@ namespace ReservationSys.Api.Migrations
 
                     b.Property<int>("ContactId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
