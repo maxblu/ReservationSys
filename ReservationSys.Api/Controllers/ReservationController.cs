@@ -1,13 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ReservationSys.Domain.Concrete;
 using ReservationSys.Domain.Entities;
-using ReservationSys.Domain.UnitOfWork;
+using ReservationSys.Api.Wrappers;
+using ReservationSys.Api.Filters;
+using ReservationSys.Api.Helpers;
+// using ReservationSys.Api.Helpers;
 
 namespace ReservationSys.Api.Controllers
 {
@@ -22,19 +26,41 @@ namespace ReservationSys.Api.Controllers
             _unitOfWork = unitOfWork;
         }
 
+
+
         // GET: api/Reservation
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
+        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations(string by = "Title", string sortOrder = "dsc", int pageNumber = 1, int pageSize = 2)
         {
-            var reservation = await _unitOfWork.ReservRepo.GetAll();
+            var validPaginationFilter = new PaginationFilter(pageNumber, pageSize);
+            IEnumerable<Reservation> reservations;
 
-            if (reservation == null)
+            if (sortOrder == "asc")
+            {
+                reservations = await _unitOfWork.ReservRepo.GetAll(
+                            paginationFilter: reservation => reservation.Skip(((validPaginationFilter.PageNumber - 1) * validPaginationFilter.PageSize)).
+                                                                            Take(validPaginationFilter.PageSize),
+                            orderBy: reservation => reservation.OrderBy($"{by}"),
+                            includeProperties: "Contact");
+            }
+            else
+            {
+                reservations = await _unitOfWork.ReservRepo.GetAll(
+                        paginationFilter: reservation => reservation.Skip(((validPaginationFilter.PageNumber - 1) * validPaginationFilter.PageSize)).
+                                                                        Take(validPaginationFilter.PageSize),
+                        orderBy: reservation => reservation.OrderByDescending($"{by}"),
+                        includeProperties: "Contact");
+            }
+
+            if (reservations == null)
             {
                 return NotFound();
             }
 
 
-            return Ok(reservation);
+            return Ok(
+                new PagedResponse<IEnumerable<Reservation>>
+                    (reservations, validPaginationFilter.PageNumber, validPaginationFilter.PageSize));
         }
 
         // GET: api/Reservation/5
@@ -48,7 +74,7 @@ namespace ReservationSys.Api.Controllers
                 return NotFound();
             }
 
-            return Ok(reservation);
+            return Ok(new Response<Reservation>(reservation));
         }
 
         // PUT: api/Reservation/5

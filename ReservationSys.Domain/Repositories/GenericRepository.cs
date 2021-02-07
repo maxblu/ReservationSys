@@ -31,35 +31,87 @@ namespace ReservationSys.Domain.Repositories
 
         public async Task<IEnumerable<TEntity>> AddRange(IEnumerable<TEntity> entities)
         {
-            await _context.Set<TEntity>().AddRangeAsync(entities);
+            await _table.AddRangeAsync(entities);
 
             return entities;
         }
 
         public async Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> expression)
         {
-            return await _context.Set<TEntity>().AsQueryable().Where(expression).ToListAsync();
+            return await _table.AsQueryable().Where(expression).ToListAsync();
         }
 
-        public virtual async Task<IEnumerable<TEntity>> GetAll()
+        public virtual async Task<IEnumerable<TEntity>> GetAll(
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            string includeProperties = "")
         {
-            return await _context.Set<TEntity>().ToListAsync();
+            IQueryable<TEntity> query = _table;
+
+
+            foreach (var includeProperty in includeProperties.Split
+                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
+            if (orderBy != null)
+            {
+                return await orderBy(query).ToListAsync();
+            }
+            else
+            {
+                return await query.ToListAsync();
+            }
+
+
         }
+
+
+        public virtual async Task<IEnumerable<TEntity>> GetAll(
+            Func<IQueryable<TEntity>, IQueryable<TEntity>> paginationFilter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            string includeProperties = "")
+        {
+            IQueryable<TEntity> query = _table;
+
+
+            foreach (var includeProperty in includeProperties.Split
+                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+            }
+            if (paginationFilter != null)
+            {
+                return await paginationFilter(query).ToListAsync();
+            }
+            else
+            {
+                return await query.ToListAsync();
+            }
+
+
+        }
+
 
         public virtual async Task<TEntity> GetById(int id)
         {
 
-            return await _context.Set<TEntity>().FindAsync(id);
+            return await _table.FindAsync(id);
         }
 
         public void Remove(TEntity entity)
         {
-            _context.Set<TEntity>().Remove(entity);
+            _table.Remove(entity);
         }
 
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
-            _context.Set<TEntity>().RemoveRange(entities);
+            _table.RemoveRange(entities);
         }
 
         public void Update(TEntity obj)
@@ -68,6 +120,7 @@ namespace ReservationSys.Domain.Repositories
             _context.Entry(obj).State = EntityState.Modified;
 
         }
+
     }
 
 }

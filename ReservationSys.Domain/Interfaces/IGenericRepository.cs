@@ -11,7 +11,9 @@ namespace ReservationSys.Domain.Interfaces
     public interface IGenericRepository<TEntity> where TEntity : class
     {
         Task<TEntity> GetById(int id);
-        Task<IEnumerable<TEntity>> GetAll();
+        Task<IEnumerable<TEntity>> GetAll(
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy,
+            string includeProperties);
         Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> expression);
         Task<TEntity> Add(TEntity entity);
         Task<IEnumerable<TEntity>> AddRange(IEnumerable<TEntity> entities);

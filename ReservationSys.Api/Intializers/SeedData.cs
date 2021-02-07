@@ -80,8 +80,7 @@ namespace ReservationSys.Api.Initializers
                     Name = "Flash",
                     BirthDate = new DateTime(1959, 12, 28),
                     TypeId = 1,
-                     IdNumber=5,
-
+                    IdNumber=5,
                     Phone = "00000000"
                 },
                 new Contact{

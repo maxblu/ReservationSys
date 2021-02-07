@@ -179,3 +179,5 @@
 /home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/obj/Debug/net5.0/Razor/Templates/ViewGenerator/_ValidationScriptsPartial.cshtml.g.cs
 /home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/obj/Debug/net5.0/ReservationSys.Api.RazorTargetAssemblyInfo.cs
 /home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/obj/Debug/net5.0/ReservationSys.Api.Views.pdb
+/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/bin/Debug/net5.0/System.Linq.Dynamic.dll
+/home/dany/Documents/ISUCorpInterview/ReservationSys/ReservationSys.Api/bin/Debug/net5.0/System.Linq.Dynamic.Core.dll

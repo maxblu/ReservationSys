@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ReservationSys.Api.Filters;
+using ReservationSys.Api.Wrappers;
 using ReservationSys.Domain.Concrete;
 using ReservationSys.Domain.Entities;
 
@@ -22,18 +24,29 @@ namespace ReservationSys.Api.Controllers
         }
 
         // GET: api/Contact
-        [HttpGet("")]
-        public async Task<ActionResult<IEnumerable<Contact>>> Get()
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Contact>>> Get(int pageNumber = 1, int pageSize = 2)
         {
-            var contacs = await _unitOfWork.ContactRepo.GetAll();
+            var validPaginationFilter = new PaginationFilter(pageNumber, pageSize);
+
+            var contacs = await _unitOfWork.ContactRepo.GetAll(
+                paginationFilter: reservation => reservation.Skip(((validPaginationFilter.PageNumber - 1) * validPaginationFilter.PageSize)).
+                                                                            Take(validPaginationFilter.PageSize),
+                orderBy: contacs => contacs.OrderBy(q => q.Name),
+                includeProperties: "Type");
+
+
 
             if (contacs == null)
             {
+
                 return NotFound();
             }
 
 
-            return Ok(contacs);
+            return Ok(
+                new PagedResponse<IEnumerable<Contact>>
+                    (contacs, validPaginationFilter.PageNumber, validPaginationFilter.PageSize));
 
         }
 

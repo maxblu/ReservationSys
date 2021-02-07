@@ -19,10 +19,12 @@ namespace ReservationSys.Domain.Repositories
 
         }
 
-        public override async Task<IEnumerable<Contact>> GetAll()
-        {
-            return await _table.Include("Type").ToListAsync();
-        }
+        // public override async Task<IEnumerable<Contact>> GetAll()
+        // {
+        //     return await _table.Include("Type").ToListAsync();
+        // }
+
+
 
         public override async Task<Contact> GetById(int id)
         {
