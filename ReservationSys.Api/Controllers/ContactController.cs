@@ -126,10 +126,12 @@ namespace ReservationSys.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<Contact>> PostContact(Contact contact)
         {
-            if (ModelState.IsValid)
-            {
-                var responseFail = new Response<Contact>(contact);
+            var exist = await ValidateContactNameUnique(contact.Name);
 
+
+
+            if (ModelState.IsValid && !exist)
+            {
 
                 try
                 {
@@ -139,9 +141,8 @@ namespace ReservationSys.Api.Controllers
                 }
                 catch (DbUpdateException)
                 {
-                    responseFail.Errors = new string[] { "That contact name exist, choose another" };
-                    responseFail.Succeeded = false;
-                    return BadRequest(responseFail);
+
+                    return BadRequest();
                     // throw;
                 }
 
@@ -151,8 +152,6 @@ namespace ReservationSys.Api.Controllers
 
 
             }
-
-
             return ValidationProblem(ModelState);
         }
 
@@ -172,6 +171,21 @@ namespace ReservationSys.Api.Controllers
             return NoContent();
         }
 
+        private async Task<bool> ValidateContactNameUnique(string name)
+        {
+
+            var exist = await _unitOfWork.ctx.Contacts.AnyAsync(c => c.Name == name);
+            if (exist)
+            {
+                ModelState.AddModelError("name", "Al ready exist a Contact with that name");
+
+
+            }
+            return exist;
+
+
+
+        }
 
     }
 }

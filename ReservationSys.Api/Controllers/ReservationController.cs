@@ -127,6 +127,7 @@ namespace ReservationSys.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation)
         {
+            System.Console.WriteLine("HEllooooooooo");
             if (ModelState.IsValid)
             {
 

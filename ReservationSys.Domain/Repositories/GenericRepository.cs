@@ -104,7 +104,7 @@ namespace ReservationSys.Domain.Repositories
             return await _table.FindAsync(id);
         }
 
-        public void Remove(TEntity entity)
+        public virtual void Remove(TEntity entity)
         {
             _table.Remove(entity);
         }

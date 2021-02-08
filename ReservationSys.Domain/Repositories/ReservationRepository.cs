@@ -27,8 +27,14 @@ namespace ReservationSys.Domain.Repositories
 
         public override async Task<Reservation> GetById(int id)
         {
+
             return await _table.Include("Contact").FirstOrDefaultAsync(x => x.Id == id);
         }
+
+        // public virtual void Remove(int id)
+        // {
+        //     _table.FromSqlRaw($"DELETE FROM reservations Where  reservations.id=={id}").AsSingleQuery();
+        // }
 
     }
 
