@@ -30,10 +30,13 @@ namespace ReservationSys.Api.Controllers
 
         // GET: api/Reservation
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations(string by = "Title", string sortOrder = "dsc", int pageNumber = 1, int pageSize = 5)
+        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations(string by = "Title", string sortOrder = "dsc", int pageNumber = 1, int pageSize = 3)
         {
             var validPaginationFilter = new PaginationFilter(pageNumber, pageSize);
             IEnumerable<Reservation> reservations;
+
+            int totalRecords = await _unitOfWork.ctx.Reservations.CountAsync();
+
 
             if (sortOrder == "asc")
             {
@@ -58,9 +61,14 @@ namespace ReservationSys.Api.Controllers
             }
 
 
+
             return Ok(
                 new PagedResponse<IEnumerable<Reservation>>
-                    (reservations, validPaginationFilter.PageNumber, validPaginationFilter.PageSize));
+                    (reservations, validPaginationFilter.PageNumber, validPaginationFilter.PageSize)
+                {
+                    TotalRecords = totalRecords,
+                    TotalPages = (int)Math.Ceiling((double)(totalRecords / pageSize))
+                });
         }
 
         // GET: api/Reservation/5

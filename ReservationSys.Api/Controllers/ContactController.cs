@@ -25,7 +25,7 @@ namespace ReservationSys.Api.Controllers
 
         // GET: api/Contact
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Contact>>> Get(int pageNumber = 1, int pageSize = 2)
+        public async Task<ActionResult<IEnumerable<Contact>>> Get(int pageNumber = 1, int pageSize = 3)
         {
             var validPaginationFilter = new PaginationFilter(pageNumber, pageSize);
 
@@ -64,7 +64,7 @@ namespace ReservationSys.Api.Controllers
             return Ok(contact);
         }
 
-        [Route("api/lookup/[controller]")]
+        [Route("/api/Contact/lookup")]
         [HttpGet]
         public async Task<ActionResult<Contact>> GetContactByName(string name)
         {
@@ -76,8 +76,8 @@ namespace ReservationSys.Api.Controllers
             }
 
 
-            var contactType = await _unitOfWork.ctx.ContactTypes.FindAsync(contact.FirstOrDefault().TypeId);
-            contact.FirstOrDefault().Type = contactType;
+            // var contactType = await _unitOfWork.ctx.ContactTypes.FindAsync(contact.FirstOrDefault().TypeId);
+            // contact.FirstOrDefault().Type = contactType;
             return Ok(contact);
         }
 

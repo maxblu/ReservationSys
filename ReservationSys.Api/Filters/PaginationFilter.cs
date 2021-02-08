@@ -7,12 +7,12 @@ namespace ReservationSys.Api.Filters
         public PaginationFilter()
         {
             this.PageNumber = 1;
-            this.PageSize = 5;
+            this.PageSize = 3;
         }
         public PaginationFilter(int pageNumber, int pageSize)
         {
             this.PageNumber = pageNumber < 1 ? 1 : pageNumber;
-            this.PageSize = pageSize > 5 ? 5 : pageSize;
+            this.PageSize = pageSize > 4 ? 4 : pageSize;
         }
     }
 }
