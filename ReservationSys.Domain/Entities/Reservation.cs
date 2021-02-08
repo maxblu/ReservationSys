@@ -24,6 +24,7 @@ namespace ReservationSys.Domain.Entities
 
         [HiddenInput(DisplayValue = false)]
         [Required(ErrorMessage = "Please specify a Contact")]
+        [ForeignKey("ContactId")]
         public int ContactId { get; set; }
 
         public Contact Contact { get; set; }

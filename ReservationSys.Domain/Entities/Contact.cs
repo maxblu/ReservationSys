@@ -8,8 +8,10 @@ namespace ReservationSys.Domain.Entities
 {
     public class Contact
     {
+        [Key]
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
+
 
         [Required(ErrorMessage = "Please enter a contact name")]
         public string Name { get; set; }
@@ -19,6 +21,7 @@ namespace ReservationSys.Domain.Entities
 
         [HiddenInput(DisplayValue = false)]
         [Required(ErrorMessage = "Please enter a ContactType")]
+        [ForeignKey("TypeId")]
         public int TypeId { get; set; }
 
         public ContactType Type { get; set; }
@@ -27,8 +30,6 @@ namespace ReservationSys.Domain.Entities
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
 
-        [Required(ErrorMessage = "Must enter id number")]
-        public long IdNumber { get; set; }
 
     }
 

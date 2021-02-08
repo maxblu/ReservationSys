@@ -64,6 +64,26 @@ namespace ReservationSys.Api.Controllers
             return Ok(contact);
         }
 
+        [Route("api/lookup/[controller]")]
+        [HttpGet]
+        public async Task<ActionResult<Contact>> GetContactByName(string name)
+        {
+            var contact = await _unitOfWork.ContactRepo.Find(c => c.Name == name);
+
+            if (contact == null)
+            {
+                return NotFound();
+            }
+
+
+            var contactType = await _unitOfWork.ctx.ContactTypes.FindAsync(contact.FirstOrDefault().TypeId);
+            contact.FirstOrDefault().Type = contactType;
+            return Ok(contact);
+        }
+
+
+
+
         // // PUT: api/Contact/5
         // // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -108,11 +128,24 @@ namespace ReservationSys.Api.Controllers
         {
             if (ModelState.IsValid)
             {
+                var responseFail = new Response<Contact>(contact);
 
-                await _unitOfWork.ContactRepo.Add(contact);
+
+                try
+                {
+                    await _unitOfWork.ContactRepo.Add(contact);
+                    await _unitOfWork.Complete();
+
+                }
+                catch (DbUpdateException)
+                {
+                    responseFail.Errors = new string[] { "That contact name exist, choose another" };
+                    responseFail.Succeeded = false;
+                    return BadRequest(responseFail);
+                    // throw;
+                }
 
 
-                await _unitOfWork.Complete();
 
                 return CreatedAtAction("GetContact", new { id = contact.Id }, contact);
 

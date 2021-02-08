@@ -46,13 +46,13 @@ namespace ReservationSys.Api.Helpers
             string[] props = property.Split('.');
             Type type = typeof(T);
             ParameterExpression arg = Expression.Parameter(type, "x");
-            System.Console.WriteLine("jqefjepqfjeqf", arg);
+
             Expression expr = arg;
             foreach (string prop in props)
             {
                 // use reflection (not ComponentModel) to mirror LINQ
                 PropertyInfo pi = type.GetProperty(prop);
-                System.Console.WriteLine("Aqwifqf", pi);
+
                 expr = Expression.Property(expr, pi);
                 type = pi.PropertyType;
             }

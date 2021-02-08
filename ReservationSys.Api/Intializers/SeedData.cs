@@ -52,42 +52,37 @@ namespace ReservationSys.Api.Initializers
                     Name = "Batman",
                     BirthDate = new DateTime(1939, 5, 1),
                     TypeId = 2,
-                    IdNumber=1,
                     Phone = "01010101"
                 },
                 new Contact{
                     Name = "Superman",
                     BirthDate = new DateTime(1938, 2, 19),
                     TypeId = 2,
-                     IdNumber=2,
                     Phone = "81281281"
                 },
                 new Contact{
                     Name = "Wolverine",
                     BirthDate = new DateTime(1974, 10, 12),
                     TypeId = 3,
-                     IdNumber=3,
                     Phone = "35467891"
                 },
                 new Contact{
                     Name = "Spider-Man",
                     BirthDate = new DateTime(1962, 8, 8),
                     TypeId = 4,
-                     IdNumber=4,
                     Phone = "88888888"
                 },
                 new Contact{
                     Name = "Flash",
                     BirthDate = new DateTime(1959, 12, 28),
                     TypeId = 1,
-                    IdNumber=5,
                     Phone = "00000000"
                 },
                 new Contact{
                     Name = "Wonder Woman",
                     BirthDate = new DateTime(1941, 3, 22),
                     TypeId = 2,
-                     IdNumber=6,
+
                     Phone = "74289567"
                 },
             };

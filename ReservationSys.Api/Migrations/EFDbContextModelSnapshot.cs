@@ -25,9 +25,6 @@ namespace ReservationSys.Api.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("IdNumber")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");

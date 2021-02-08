@@ -30,7 +30,7 @@ namespace ReservationSys.Api.Controllers
 
         // GET: api/Reservation
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations(string by = "Title", string sortOrder = "dsc", int pageNumber = 1, int pageSize = 2)
+        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations(string by = "Title", string sortOrder = "dsc", int pageNumber = 1, int pageSize = 5)
         {
             var validPaginationFilter = new PaginationFilter(pageNumber, pageSize);
             IEnumerable<Reservation> reservations;
@@ -89,7 +89,7 @@ namespace ReservationSys.Api.Controllers
 
             if (ModelState.IsValid)
             {
-                await _unitOfWork.ReservRepo.Add(reservation);
+                _unitOfWork.ReservRepo.Update(reservation);
 
                 try
                 {
@@ -127,7 +127,7 @@ namespace ReservationSys.Api.Controllers
 
                 await _unitOfWork.Complete();
 
-                return CreatedAtAction("GetContact", new { id = reservation.Id }, reservation);
+                return CreatedAtAction("GetReservation", new { id = reservation.Id }, reservation);
 
 
             }
