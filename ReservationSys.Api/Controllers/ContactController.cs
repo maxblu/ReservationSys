@@ -25,9 +25,11 @@ namespace ReservationSys.Api.Controllers
 
         // GET: api/Contact
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Contact>>> Get(int pageNumber = 1, int pageSize = 3)
+        public async Task<ActionResult<IEnumerable<Contact>>> Get(int pageNumber = 1, int pageSize = 4)
         {
             var validPaginationFilter = new PaginationFilter(pageNumber, pageSize);
+
+            int totalRecords = await _unitOfWork.ctx.Contacts.CountAsync();
 
             var contacs = await _unitOfWork.ContactRepo.GetAll(
                 paginationFilter: reservation => reservation.Skip(((validPaginationFilter.PageNumber - 1) * validPaginationFilter.PageSize)).
@@ -46,7 +48,11 @@ namespace ReservationSys.Api.Controllers
 
             return Ok(
                 new PagedResponse<IEnumerable<Contact>>
-                    (contacs, validPaginationFilter.PageNumber, validPaginationFilter.PageSize));
+                    (contacs, validPaginationFilter.PageNumber, validPaginationFilter.PageSize)
+                {
+                    TotalRecords = totalRecords,
+                    TotalPages = (int)Math.Ceiling((double)(totalRecords / pageSize))
+                });
 
         }
 
