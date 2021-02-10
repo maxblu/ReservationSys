@@ -51,7 +51,7 @@ namespace ReservationSys.Api.Controllers
                     (contacs, validPaginationFilter.PageNumber, validPaginationFilter.PageSize)
                 {
                     TotalRecords = totalRecords,
-                    TotalPages = (int)Math.Ceiling((double)(totalRecords / pageSize))
+                    TotalPages = (int)Math.Ceiling((decimal)(totalRecords) / pageSize)
                 });
 
         }

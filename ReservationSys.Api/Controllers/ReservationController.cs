@@ -30,7 +30,7 @@ namespace ReservationSys.Api.Controllers
 
         // GET: api/Reservation
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations(string by = "Title", string sortOrder = "dsc", int pageNumber = 1, int pageSize = 3)
+        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations(string by = "Title", string sortOrder = "asc", int pageNumber = 1, int pageSize = 3)
         {
             var validPaginationFilter = new PaginationFilter(pageNumber, pageSize);
             IEnumerable<Reservation> reservations;
@@ -67,7 +67,7 @@ namespace ReservationSys.Api.Controllers
                     (reservations, validPaginationFilter.PageNumber, validPaginationFilter.PageSize)
                 {
                     TotalRecords = totalRecords,
-                    TotalPages = (int)Math.Ceiling((double)(totalRecords / pageSize))
+                    TotalPages = (int)Math.Ceiling((decimal)(totalRecords) / pageSize)
                 });
         }
 
