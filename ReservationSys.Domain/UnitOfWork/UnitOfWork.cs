@@ -6,7 +6,9 @@ using ReservationSys.Domain.Repositories;
 
 namespace ReservationSys.Domain.UnitOfWork
 {
-
+    /*
+    Concrete inplementation of _unitOFWork for managing repositoryes and db context 
+    */
     public class UnitOfWork : IUnitOfWork
     {
         private readonly EFDbContext _context;

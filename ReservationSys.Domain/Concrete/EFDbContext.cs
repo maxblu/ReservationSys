@@ -2,6 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using ReservationSys.Domain.Entities;
 
 
+/*
+DB Context for the databse entities
+
+*/
 
 namespace ReservationSys.Domain.Concrete
 {

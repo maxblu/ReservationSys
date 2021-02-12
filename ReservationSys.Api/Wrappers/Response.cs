@@ -6,6 +6,9 @@ namespace ReservationSys.Api.Wrappers
 
     public class Response<T>
     {
+        /*
+        Object for custom responses
+        */
         public Response()
         {
         }

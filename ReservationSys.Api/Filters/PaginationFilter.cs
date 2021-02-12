@@ -1,5 +1,9 @@
 namespace ReservationSys.Api.Filters
 {
+    /*
+    Class for managing pagination control and basic cuurent page and size 
+    And limiting the page size. 
+    */
     public class PaginationFilter
     {
         public int PageNumber { get; set; }

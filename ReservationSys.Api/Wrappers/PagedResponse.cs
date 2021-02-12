@@ -3,6 +3,12 @@ using System;
 
 namespace ReservationSys.Api.Wrappers
 {
+
+    /*
+    Class for a response object with pagination for 
+    reservations get and contact get. This is the pageData in
+    the front.
+    */
     public class PagedResponse<T> : Response<T>
     {
         public int PageNumber { get; set; }

@@ -9,7 +9,13 @@ using System.Threading.Tasks;
 
 namespace ReservationSys.Domain.Repositories
 {
-
+    /*
+    Concrete inplementation of generic Repository 
+    Using async and LINQ for not loading objects in memory 
+    and ejecute the queries directly in the database 
+    and returne when a IEnumerable is call like 
+    ToListAsync
+    */
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         protected readonly EFDbContext _context;

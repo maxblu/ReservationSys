@@ -13,9 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using ReservationSys.Domain.Concrete;
 using Microsoft.EntityFrameworkCore;
-using ReservationSys.Domain.Abstract;
-using ReservationSys.Domain.Entities;
-using Microsoft.AspNetCore.Identity;
+
 using ReservationSys.Domain.Interfaces;
 using ReservationSys.Domain.Repositories;
 using ReservationSys.Domain.UnitOfWork;
@@ -39,7 +37,7 @@ namespace ReservationSys.Api
             services.AddControllers();
 
 
-            #region Repositories
+            #region SubscribingRepositoriesToDI
 
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             // services.AddTransient(typeof(IGenericRepository<Contact>), typeof(ContactRepository));
@@ -51,7 +49,11 @@ namespace ReservationSys.Api
 
             services.AddDbContext<EFDbContext>(options =>
             {
-
+                /*Using sqlitw. Im working on ubuntu 20.04 whish has been a 
+                 real paint with .net core and sql server for configuring and so
+                 sql server i can't get it to run son dependecies isues im stiil 
+                figuring  out 
+                */
                 options.UseSqlite(
                     Configuration.GetConnectionString("ReservationsContext"),
                     b => b.MigrationsAssembly("ReservationSys.Api"));

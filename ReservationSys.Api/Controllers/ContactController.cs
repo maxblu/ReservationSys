@@ -31,6 +31,8 @@ namespace ReservationSys.Api.Controllers
 
             int totalRecords = await _unitOfWork.ctx.Contacts.CountAsync();
 
+
+            //THis os how I send the querys to the methods in a way that when they return anly the result is in memorie
             var contacs = await _unitOfWork.ContactRepo.GetAll(
                 paginationFilter: reservation => reservation.Skip(((validPaginationFilter.PageNumber - 1) * validPaginationFilter.PageSize)).
                                                                             Take(validPaginationFilter.PageSize),
@@ -44,7 +46,6 @@ namespace ReservationSys.Api.Controllers
 
                 return NotFound();
             }
-
 
             return Ok(
                 new PagedResponse<IEnumerable<Contact>>

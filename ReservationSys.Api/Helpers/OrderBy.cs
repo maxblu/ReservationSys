@@ -6,7 +6,11 @@ using System.Reflection;
 
 namespace ReservationSys.Api.Helpers
 {
-
+    /*
+    Extension method for using orderBy and DesdendantORderBy dinamic
+    pasing the field for what I whant to order as string
+    System.Link.Dynamic don't work in net core 5 al least.
+    */
     public static class Utils
     {
 

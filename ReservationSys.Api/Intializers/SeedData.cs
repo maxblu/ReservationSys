@@ -9,6 +9,9 @@ using System.Collections.Generic;
 
 namespace ReservationSys.Api.Initializers
 {
+    /*
+    Seeding method for some test data .
+    */
     public static class SeedData
     {
         public static void Initialize(IServiceProvider serviceProvider)

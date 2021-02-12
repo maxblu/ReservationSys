@@ -10,7 +10,9 @@ using ReservationSys.Domain.Entities;
 
 namespace ReservationSys.Domain.Repositories
 {
-
+    /*
+    Concrete inplementation of contact Repository 
+    */
     public class ContactRepository : GenericRepository<Contact>
     {
 
@@ -19,10 +21,7 @@ namespace ReservationSys.Domain.Repositories
 
         }
 
-        // public override async Task<IEnumerable<Contact>> GetAll()
-        // {
-        //     return await _table.Include("Type").ToListAsync();
-        // }
+
 
 
 
