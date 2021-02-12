@@ -21,9 +21,9 @@ namespace ReservationSys.Api.Initializers
                     DbContextOptions<EFDbContext>>()))
             {
 
-                //Dev only
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
+                //Dev only delete and reacreate de DB
+                // context.Database.EnsureDeleted();
+                // context.Database.EnsureCreated();
 
                 var types = new List<ContactType>
             {
