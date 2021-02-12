@@ -9,8 +9,8 @@ using ReservationSys.Domain.Concrete;
 namespace ReservationSys.Api.Migrations
 {
     [DbContext(typeof(EFDbContext))]
-    [Migration("20210208004645_Init")]
-    partial class Init
+    [Migration("20210212043449_Reservation_Delete")]
+    partial class Reservation_Delete
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

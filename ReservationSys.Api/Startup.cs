@@ -70,7 +70,7 @@ namespace ReservationSys.Api
             if (env.IsDevelopment())
             {
                 app.UseCors(
-                    options => options.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader()
+                    options => options.WithOrigins(new string[] { "*" }).AllowAnyMethod().AllowAnyHeader()
                 );
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();

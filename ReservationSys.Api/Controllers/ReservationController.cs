@@ -30,7 +30,7 @@ namespace ReservationSys.Api.Controllers
 
         // GET: api/Reservation
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations(string by = "Title", string sortOrder = "asc", int pageNumber = 1, int pageSize = 3)
+        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations(string by = "Title", string sortOrder = "asc", int pageNumber = 1, int pageSize = 4)
         {
             var validPaginationFilter = new PaginationFilter(pageNumber, pageSize);
             IEnumerable<Reservation> reservations;
@@ -149,6 +149,9 @@ namespace ReservationSys.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteReservation(int id)
         {
+
+            // await _unitOfWork.ctx.Database.ExecuteSqlRawAsync("DeleteReservation @p0", parameters: new[] { id.ToString() });
+
             var reservation = await _unitOfWork.ReservRepo.GetById(id);
             if (reservation == null)
             {
@@ -161,9 +164,6 @@ namespace ReservationSys.Api.Controllers
             return NoContent();
         }
 
-        // private bool ReservationExists(int id)
-        // {
-        //     return _context.Reservations.Any(e => e.Id == id);
-        // }
+
     }
 }

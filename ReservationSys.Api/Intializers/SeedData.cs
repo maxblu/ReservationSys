@@ -37,10 +37,10 @@ namespace ReservationSys.Api.Initializers
                 Name = "Family"
                 }
             };
-                // Look for any movies.
+                // Look for any 
                 if (context.Contacts.Any())
                 {
-                    return;   // DB has been seeded
+                    return;
                 }
 
                 types.ForEach(t => context.ContactTypes.Add(t));
@@ -50,37 +50,37 @@ namespace ReservationSys.Api.Initializers
             {
                 new Contact{
                     Name = "Person1",
-                    BirthDate = new DateTime(1939, 5, 1),
+                    BirthDate = new DateTime(2000, 5, 1),
                     TypeId = 2,
                     Phone = "01010101"
                 },
                 new Contact{
                     Name = "Person2",
-                    BirthDate = new DateTime(1938, 2, 19),
+                    BirthDate = new DateTime(1908, 5, 19),
                     TypeId = 2,
                     Phone = "81281281"
                 },
                 new Contact{
                     Name = "Person3",
-                    BirthDate = new DateTime(1974, 10, 12),
+                    BirthDate = new DateTime(1924, 10, 12),
                     TypeId = 3,
                     Phone = "35467891"
                 },
                 new Contact{
                     Name = "Person4",
-                    BirthDate = new DateTime(1962, 8, 8),
+                    BirthDate = new DateTime(1982, 8, 10),
                     TypeId = 4,
                     Phone = "88888888"
                 },
                 new Contact{
                     Name = "Person5",
-                    BirthDate = new DateTime(1959, 12, 28),
+                    BirthDate = new DateTime(1999, 2, 28),
                     TypeId = 1,
                     Phone = "00000000"
                 },
                 new Contact{
                     Name = "Person6",
-                    BirthDate = new DateTime(1941, 3, 22),
+                    BirthDate = new DateTime(1961, 3, 22),
                     TypeId = 2,
 
                     Phone = "74289567"
@@ -94,37 +94,68 @@ namespace ReservationSys.Api.Initializers
             {
                 new Reservation{
                     Title = "Reservation1",
-                    Date = new DateTime(1989, 3, 11),
+                    Date = new DateTime(2022, 3, 11),
                     ContactId = 1,
                     Description = "Hello",
                     IsFavorite = true,
                     Ranking = 5,
-                    CreationDate= new DateTime(1900,5,30)
+                    CreationDate= new DateTime(2021,5,30)
                 },
                 new Reservation{
                     Title = "Reservation2",
-                    Date = new DateTime(1989, 2, 10),
+                    Date = new DateTime(2022, 2, 10),
                     ContactId = 3,
                     Description =  "Hello",
                     IsFavorite = false,
                     Ranking = 2,
-                    CreationDate= new DateTime(1900,5,30)
+                    CreationDate= new DateTime(2021,5,30)
                 },
                 new Reservation{
                     Title = "Reservation3",
-                    Date = new DateTime(1974, 11, 8),
+                    Date = new DateTime(2022, 11, 8),
                     ContactId = 4,
                     IsFavorite = false,
                     Ranking = 4,
-                    CreationDate= new DateTime(1900,5,30)
+                    CreationDate= new DateTime(2021,5,30)
                 },
                 new Reservation{
                     Title = "Reservation4",
-                    Date = new DateTime(1979, 12, 31),
+                    Date = new DateTime(2023, 12, 31),
                     ContactId = 5,
                     IsFavorite = true,
                     Ranking = 4,
-                    CreationDate= new DateTime(1900,5,30)
+                    CreationDate= new DateTime(2022, 12, 31),
+                },
+                new Reservation{
+                    Title = "Reservation5",
+                    Date = new DateTime(2023, 12, 31),
+                    ContactId = 5,
+                    IsFavorite = false,
+                    Ranking = 1,
+                    CreationDate= new DateTime(2022, 12, 31),
+                },
+                new Reservation{
+                    Title = "Reservation6",
+                    Date = new DateTime(2023, 12, 31),
+                    ContactId = 5,
+                    IsFavorite = true,
+                    Ranking = 4,
+                    CreationDate= new DateTime(2022, 12, 31),
+                },
+                new Reservation{
+                    Title = "Reservation7",
+                    Date = new DateTime(2023, 12, 31),
+                    ContactId = 1,
+                    IsFavorite = false,
+                    Ranking = 4,
+                    CreationDate= new DateTime(2022, 12, 31),
+                },new Reservation{
+                    Title = "Reservation8",
+                    Date = new DateTime(2023, 12, 31),
+                    ContactId = 2,
+                    IsFavorite = false,
+                    Ranking = 4,
+                    CreationDate= new DateTime(2022, 12, 31),
                 },
             };
 
